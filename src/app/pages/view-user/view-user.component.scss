@@ -1,0 +1,233 @@
+/**Variáveis*/
+$color-border: #ccc;
+$color-bg-alt: #fafafa;
+$color-placeholder: #aaa;
+$color-bg-header: #4F4F5E;
+$color-text-header: #F8F8F8;
+$color-text-header-hover: #999;
+$color-text-main: #333333;
+$color-link: #0653FA;
+$color-danger: #d32f2f;
+$color-muted: #999;
+
+$font-size-header: 24px;
+$font-size-table: 21px;
+$font-size-mobile: 14px;
+$font-size-small: 16px;
+
+$profile-size-desktop: 380px;
+$profile-size-tablet: 190px;
+$profile-size-mobile: 120px;
+
+$border-radius: 10px;
+$card-padding: 10px;
+$gap-actions: 10px;
+
+/**Mixins*/
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin responsive-padding($top, $horizontal, $bottom) {
+  position: relative;
+  top: $top;
+  padding: 0 $horizontal $bottom $horizontal;
+}
+
+@mixin circle($size, $bg-color: $color-placeholder) {
+  width: $size;
+  height: $size;
+  background-color: $bg-color;
+  border-radius: 50%;
+}
+
+/**Estilos*/
+main {
+  @include responsive-padding(70px, 60px, 50px);
+}
+
+.back__page {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 0;
+  background-color: transparent;
+  text-decoration: none;
+
+  > svg {
+    cursor: pointer;
+  }
+
+  > h3 {
+    cursor: pointer;
+    color: $color-link;
+    font-size: $font-size-small;
+    font-weight: 300;
+    margin-left: 5px;
+    margin-top: 2px;
+  }
+}
+
+div.profile {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  > img {
+    @include circle($profile-size-desktop);
+  }
+}
+
+.profile__image {
+  @include circle($profile-size-desktop, #d6d6d6);
+}
+
+.profile__wrapper {
+  margin-left: 80px;
+}
+
+.profile__full__name,
+.profile__age,
+.profile__address {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 30px;
+
+  > h2 {
+    margin-left: 15px;
+    font-size: 21px;
+    color: $color-text-main;
+  }
+}
+
+.profile__actions {
+  > button {
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+
+    &:nth-child(1) {
+      margin-right: 20px;
+    }
+  }
+}
+
+.biography {
+  max-width: 1400px;
+  width: 100%;
+  margin-top: 120px;
+
+  > p {
+    padding: 15px 10px;
+    height: 200px;
+    border: 1px solid $color-text-main;
+    border-radius: 7px;
+    overflow-y: hidden;
+    font-weight: 600;
+    margin: 8px 0;
+    text-align: left;
+  }
+
+  > h4 {
+    text-align: right;
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  @include flex-center;
+  z-index: 999;
+
+  &__content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: $border-radius;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+
+    h2 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: $color-text-main;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: $border-radius;
+      font-size: 16px;
+      cursor: pointer;
+
+      &.confirm {
+        background-color: $color-danger;
+        color: #fff;
+      }
+
+      &.cancel {
+        background-color: $color-muted;
+        color: #fff;
+      }
+    }
+  }
+}
+
+/**Media Queries*/
+@media (max-width: 1000px) {
+  div.profile {
+    flex-direction: column;
+  }
+
+  .profile > img {
+    @include circle($profile-size-tablet);
+  }
+
+  .profile__image {
+    @include circle($profile-size-tablet, #d6d6d6);
+  }
+
+  .profile__wrapper {
+    margin-left: 0;
+    margin-top: 80px;
+  }
+}
+
+@media (max-width: 600px) {
+  main {
+    padding: 0 30px 50px 30px;
+  }
+}
+
+@media (max-width: 390px) {
+  main {
+    padding: 0 15px 50px 15px;
+  }
+
+  .profile > img {
+    @include circle($profile-size-mobile);
+  }
+
+  .profile__image {
+    @include circle($profile-size-mobile, #d6d6d6);
+  }
+
+  .biography > p {
+    font-size: 15px;
+    max-width: 350px;
+  }
+}

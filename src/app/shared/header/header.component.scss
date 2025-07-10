@@ -1,98 +1,276 @@
+/**Key Frames*/
+@keyframes down__top__arrow {
+  0%{
+    bottom: 50px;
+  }
+  50%{
+    bottom: 47px;
+  }
+  100%{
+    bottom: 50px;
+  }
+}
+
+@keyframes down__top__arrow__responsive__1440 {
+  0%{
+    bottom: 30px;
+  }
+  50%{
+    bottom: 27px;
+  }
+  100%{
+    bottom: 30px;
+  }
+}
+
+@keyframes down__top__arrow__responsive__480 {
+  0%{
+    bottom: 15px;
+  }
+  50%{
+    bottom: 12px;
+  }
+  100%{
+    bottom: 15px;
+  }
+}
+
+/**Variáveis*/
 $color-bg-header: #4F4F5E;
 $color-text-header: #F8F8F8;
 $color-text-header-hover: #999;
 $color-text-main: #333333;
 $color-bg-profile: #e6e6e6;
+
 $font-size-header: 24px;
+$font-size-subtitle: 18px;
+$font-size-small: 14px;
 
-header{
-    width: 100%;
-    height: 500px;
-    background-color: $color-bg-header;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    padding:  50px;
-    position: relative;
+$circle-size-default: 300px;
+$circle-size-md: 250px;
+$circle-size-sm: 220px;
+$circle-size-xs: 180px;
+$circle-size-xxs: 140px;
+$circle-size-min: 120px;
+
+$menu-size: 60px;
+$menu-size-sm: 50px;
+
+$z-index-header: 1;
+$z-index-subtitle: 999;
+$z-index-circle: 100;
+
+/**Mixins*/
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.header__top{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
 }
 
-.header__title > h1,.header__subtitle > h3{
-    font-size: $font-size-header;
-    font-weight: 600;
-    color: $color-text-header;
+@mixin circle($size, $bg-color: $color-bg-profile) {
+  width: $size;
+  height: $size;
+  background-color: $bg-color;
+  border-radius: 50%;
 }
 
-.header__links__menu, .header__links > ul{
-    display: flex;
-    flex-direction: row;
+/**Estilos*/
+header {
+  width: 100%;
+  height: 500px;
+  background-color: $color-bg-header;
+  z-index: $z-index-header;
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+  position: relative;
 }
 
-.header__links__menu{
-    position: relative;
-    top: 18px;
+.header__top {
+  @include flex-between;
 }
 
-.header__links > ul > li{
-    list-style-type: none;
-    font-size: $font-size-header;
-    margin-right: 100px;
+.header__title > h1,
+.header__subtitle > h3 {
+  font-size: $font-size-header;
+  font-weight: 600;
+  color: $color-text-header;
 }
 
-.header__links a{
-    color: $color-text-header;
-    text-decoration: none;
-    transition: all 0.4s ease-in-out;
+.header__links__menu,
+.header__links > ul {
+  @include flex-row;
 }
 
-.header__links a:hover{
+.header__links__menu {
+  position: relative;
+  top: 18px;
+}
+
+.header__links > ul > li {
+  list-style: none;
+  font-size: $font-size-header;
+  margin-right: 100px;
+}
+
+.header__links a {
+  color: $color-text-header;
+  text-decoration: none;
+  transition: all 0.4s ease-in-out;
+
+  &:hover {
     color: $color-text-header-hover;
+  }
 }
 
-.header__menu > .header__menu__circle{
-    width: 60px;
-    height: 60px;
-    background-color: $color-bg-profile;
-    border: 0;
-    border-radius: 50%;
-    cursor: pointer;
-    position: relative;
-    top: -15px;
-}   
-
-.header__subtitle{
-    padding-top: 180px;
-    text-align: center;
-    z-index: 999;
+.header__menu > .header__menu__circle {
+  @include circle($menu-size);
+  border: 0;
+  cursor: pointer;
+  position: relative;
+  top: -15px;
 }
 
-.header__circle{
-    background-color: $color-bg-header;
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    border: 0;
-    z-index: 100;
-    position: absolute;
-    bottom: -200px;
-    left: 50%;
-    transform: translateX(-50%);
+.header__subtitle {
+  padding-top: 180px;
+  text-align: center;
+  z-index: $z-index-subtitle;
 }
 
-.header__circle > svg{
+.header__circle {
+  @include circle($circle-size-default, $color-bg-header);
+  border: 0;
+  z-index: $z-index-circle;
+  position: absolute;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  > svg {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 80px;
+    animation-name: down__top__arrow;
+    animation-timing-function: ease-in-out;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
     cursor: pointer;
+  }
 }
 
-.header__circle > svg:active{
-    bottom: 78px;
+/**Media Queries*/
+@media (max-width: 1440px) {
+  .header__links > ul > li {
+    margin-right: 60px;
+  }
+
+  .header__circle {
+    @include circle($circle-size-md, $color-bg-header);
+    bottom: -80px;
+
+    > svg {
+      animation-name: down__top__arrow__responsive__1440;
+    }
+  }
+
+  .header__subtitle {
+    padding-top: 150px;
+
+    > h3 {
+      font-size: $font-size-subtitle;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  header {
+    height: 350px;
+  }
+
+  .header__links > ul > li {
+    font-size: 20px;
+    margin-right: 40px;
+  }
+
+  .header__circle {
+    @include circle($circle-size-sm, $color-bg-header);
+    bottom: -70px;
+  }
+
+  .header__subtitle {
+    padding-top: 95px;
+
+    > h3 {
+      font-size: 16px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 20px;
+    height: auto;
+  }
+
+  .header__links {
+    display: none;
+  }
+
+  .header__circle {
+    @include circle($circle-size-xs, $color-bg-header);
+    bottom: -60px;
+  }
+
+  .header__subtitle {
+    padding: 60px 0;
+    font-size: $font-size-small;
+  }
+}
+
+@media (max-width: 480px) {
+  .header__title h1 {
+    font-size: 20px;
+  }
+
+  .header__links > ul > li {
+    font-size: 18px;
+  }
+
+  .header__circle {
+    @include circle($circle-size-xxs, $color-bg-header);
+    bottom: -50px;
+
+    > svg {
+      animation-name: down__top__arrow__responsive__480;
+    }
+  }
+
+  .header__menu__circle {
+    @include circle($menu-size-sm);
+  }
+
+  .header__subtitle h3 {
+    font-size: 16px;
+    padding: 0 10px;
+    text-align: justify;
+  }
+}
+
+@media (max-width: 320px) {
+  .header__circle {
+    @include circle($circle-size-min, $color-bg-header);
+  }
+
+  .header__subtitle h3 {
+    font-size: 14px;
+  }
+
+  .header__links > ul > li {
+    font-size: 16px;
+  }
 }

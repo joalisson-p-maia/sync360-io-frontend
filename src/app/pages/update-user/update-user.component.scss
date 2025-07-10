@@ -1,0 +1,275 @@
+/*Variáveis*/
+$color-primary: #0653FA;
+$color-border: #ccc;
+$color-bg-button: #4F4F5E;
+$color-text: #333;
+$color-text-alt: #f8f8f8;
+$font-size-base: 16px;
+$font-size-small: 14px;
+$font-size-button: 16px;
+$profile-size-desktop: 380px;
+$profile-size-tablet: 190px;
+$profile-size-mobile: 120px;
+$radius-md: 6px;
+$radius-lg: 7px;
+
+/**Mixins*/
+@mixin circle($size, $color: #d6d6d6) {
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  background-color: $color;
+}
+
+@mixin input-base {
+  font-size: $font-size-base;
+  padding: 10px 14px;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  outline: none;
+  background-color: #fff;
+  color: $color-text;
+  width: 350px;
+  max-width: 100%;
+  box-sizing: border-box;
+  transition: border 0.3s ease;
+
+  &:focus {
+    border-color: $color-primary;
+    box-shadow: 0 0 0 2px rgba(6, 83, 250, 0.2);
+  }
+}
+
+/**Estilos*/
+main {
+  position: relative;
+  top: 70px;
+  padding: 0 60px 50px;
+}
+
+.back__page {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-decoration: none;
+
+  > svg {
+    cursor: pointer;
+  }
+
+  > h3 {
+    cursor: pointer;
+    color: $color-primary;
+    font-size: $font-size-base;
+    font-weight: 300;
+    margin-left: 5px;
+    margin-top: 2px;
+  }
+}
+
+div.profile {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+
+.profile__image {
+  @include circle($profile-size-desktop);
+  position: relative;
+
+  > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+
+  > button {
+    border: 0;
+    background-color: transparent;
+    position: absolute;
+    top: -20px;
+    right: -15px;
+
+    > svg {
+      width: 60px;
+      height: 60px;
+      cursor: pointer;
+    }
+
+    > svg:active {
+      bottom: 19px;
+    }
+  }
+
+  > label > svg {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    position: absolute;
+    right: 40px;
+    bottom: 20px;
+
+    &:active {
+      bottom: 19px;
+    }
+  }
+}
+
+.profile__wrapper {
+  margin-left: 80px;
+}
+
+.profile__full__name,
+.profile__age,
+.profile__address > .profile__street,
+.profile__address > .profile__neighborhood,
+.profile__address > .profile__state {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+
+  > label {
+    margin-bottom: 3px;
+    font-size: $font-size-base;
+    font-weight: 600;
+    color: $color-text;
+  }
+}
+
+input[type="text"],
+textarea {
+  @include input-base;
+}
+
+.biography {
+  max-width: 1400px;
+  width: 100%;
+  margin-top: 80px;
+
+  > label {
+    margin-bottom: 3px;
+    font-size: $font-size-base;
+    font-weight: 600;
+    color: $color-text;
+  }
+
+  > textarea {
+    margin-top: 10px;
+    padding: 20px 10px;
+    font-size: $font-size-small;
+    font-weight: 400;
+    resize: none;
+    width: 100%;
+    height: 200px;
+    border-radius: $radius-lg;
+  }
+
+  > h4 {
+    text-align: right;
+  }
+}
+
+form > button[type="submit"] {
+  width: 120px;
+  height: 40px;
+  font-size: $font-size-button;
+  font-weight: bold;
+  background-color: $color-bg-button;
+  color: $color-text-alt;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:active {
+    position: relative;
+    top: 1px;
+  }
+}
+
+/**Media Queries*/
+@media (max-width: 1000px) {
+  div.profile {
+    flex-direction: column;
+  }
+
+  .profile__image {
+    @include circle($profile-size-tablet);
+
+    > img {
+      width: 100%;
+      height: 100%;
+    }
+
+    > button > svg {
+      width: 45px;
+      height: 45px;
+    }
+
+    > label > svg {
+      width: 45px;
+      height: 45px;
+      right: 30px;
+      bottom: -8px;
+
+      &:active {
+        bottom: -9px;
+      }
+    }
+  }
+
+  .profile__wrapper {
+    margin-left: 0;
+    margin-top: 80px;
+  }
+}
+
+@media (max-width: 600px) {
+  main {
+    padding: 0 30px 50px;
+  }
+}
+
+@media (max-width: 390px) {
+  main {
+    padding: 0 15px 50px;
+  }
+
+  .profile__image {
+    @include circle($profile-size-mobile);
+
+    > img {
+      width: 100%;
+      height: 100%;
+    }
+
+    > button > svg {
+      width: 30px;
+      height: 30px;
+      right: 20px;
+      bottom: -5px;
+
+      &:active {
+        bottom: -6px;
+      }
+    }
+
+    > label > svg {
+      width: 30px;
+      height: 30px;
+      right: 20px;
+      bottom: -5px;
+
+      &:active {
+        bottom: -6px;
+      }
+    }
+  }
+
+  input[type="text"],
+  textarea {
+    font-size: 15px;
+    width: 100%;
+  }
+}

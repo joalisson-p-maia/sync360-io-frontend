@@ -1,0 +1,286 @@
+/**Variáveis*/
+$color-border: #ccc;
+$color-bg-alt: #fafafa;
+$color-placeholder: #aaa;
+$color-bg-header: #4F4F5E;
+$color-text-header: #F8F8F8;
+$color-text-header-hover: #999;
+$color-text-main: #333333;
+
+$font-size-header: 24px;
+$font-size-table: 21px;
+$font-size-mobile: 14px;
+
+$profile-size: 50px;
+$border-radius: 10px;
+$card-padding: 10px;
+$gap-actions: 10px;
+
+/**Mixins*/
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin circle($size, $bg-color: $color-placeholder) {
+  width: $size;
+  height: $size;
+  background-color: $bg-color;
+  border-radius: 50%;
+}
+
+@mixin responsive-padding($top, $side, $bottom) {
+  position: relative;
+  top: $top;
+  padding: 0 $side $bottom $side;
+}
+
+/**Estilos*/
+main {
+  @include responsive-padding(250px, 50px, 140px);
+}
+
+.main__create__user {
+  padding-bottom: 50px;
+}
+
+.main__title > .main__title__line {
+  width: 120px;
+  height: 4px;
+  border-radius: $border-radius;
+  background-color: $color-text-main;
+  margin-top: 3px;
+}
+
+.main__wrapper {
+  position: relative;
+  top: 50px;
+}
+
+.main__table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+
+  th, td {
+    padding: 12px;
+    border: 1px solid $color-border;
+  }
+
+  thead th {
+    background-color: #e6e6e6;
+    color: $color-text-main;
+    font-size: $font-size-table;
+  }
+
+  &__content__profile__picture__img,
+  &__content__profile__picture {
+    @include circle($profile-size);
+    margin: 0 auto;
+  }
+
+  &__content__profile__picture {
+    background-color: $color-placeholder;
+  }
+
+  &__content__actions {
+    button,
+    a {
+      margin: 0 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    > button {
+      border: 0;
+      background-color: transparent;
+
+      > svg {
+        cursor: pointer;
+
+        &:active {
+          position: relative;
+          top: 1px;
+        }
+      }
+    }
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  @include flex-center;
+  z-index: 999;
+
+  &__content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: $border-radius;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+
+    h2 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: $color-text-main;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: $border-radius;
+      font-size: 16px;
+      cursor: pointer;
+
+      &.confirm {
+        background-color: #d32f2f;
+        color: #fff;
+      }
+
+      &.cancel {
+        background-color: #999;
+        color: #fff;
+      }
+    }
+  }
+}
+
+/**Media Queries*/
+@media screen and (max-width: 1440px) {
+  main {
+    @include responsive-padding(180px, 40px, 120px);
+  }
+
+  .main__table thead th {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  main {
+    @include responsive-padding(150px, 30px, 100px);
+  }
+
+  .main__table thead th {
+    font-size: 17px;
+  }
+
+  .main__table__content__profile__picture {
+    width: 40px;
+    height: 40px;
+  }
+
+  .main__table th,
+  .main__table td {
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  main {
+    @include responsive-padding(120px, 20px, 80px);
+  }
+
+  .main__title h2,
+  .main__create__user h2 {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .main__table {
+    font-size: $font-size-mobile;
+  }
+
+  .main__table__content__actions svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .main__title > .main__title__line {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  main {
+    padding: 0 15px 60px 15px;
+  }
+
+  .main__table {
+    thead {
+      display: none;
+    }
+
+    tbody,
+    tr,
+    td {
+      display: block;
+      width: 100%;
+    }
+
+    tr {
+      @include flex-center;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+      border: 1px solid $color-border;
+      border-radius: $border-radius;
+      padding: $card-padding;
+      background-color: $color-bg-alt;
+      text-align: center;
+    }
+
+    td {
+      @include flex-center;
+      flex-direction: row;
+      text-align: center;
+      padding: 0;
+      border: none;
+    }
+
+    &__content__profile__picture {
+      margin-bottom: 10px;
+    }
+
+    &__content__actions {
+      @include flex-center;
+      justify-content: center;
+      gap: $gap-actions;
+      margin-top: 10px;
+    }
+  }
+}
+
+@media screen and (max-width: 280px) {
+  main {
+    padding: 0 10px 50px 10px;
+  }
+
+  .main__create__user h2,
+  .main__title h2 {
+    font-size: 16px;
+  }
+
+  .main__table__content__profile__picture {
+    width: 35px;
+    height: 35px;
+  }
+
+  .main__table__content__actions svg {
+    width: 20px;
+    height: 20px;
+  }
+}

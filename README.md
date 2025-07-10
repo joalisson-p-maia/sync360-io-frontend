@@ -1,59 +1,26 @@
-# Sync360Frontend
+### Frontend (Angular)
+- ##### Node.js ≥ 20.x 
+- ##### npm (instalado com o Node)
+- ##### Angular CLI (npm install -g @angular/cli)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.13.
+-------
 
-## Development server
+### 🌐 Etapas para Rodar o Frontend (Angular)
+#### 1. Clone o repositório Angular
+##### `git clone https://github.com/joalisson-p-maia/sync360-io-frontend`
+##### `cd sync360-io-frontend`
 
-To start a local development server, run:
+#### 2. Instale as dependências
+##### `npm install`
 
-```bash
-ng serve
-```
+#### 3. Rode a aplicação Angular
+##### `ng serve`
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+##### A aplicação será iniciada em:
+📍 http://localhost:4200
 
-## Code scaffolding
+--------------
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```javascript
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+#### O que não deu tempo para implementar:
+- ##### Retorno dos erros em formato de modal ou abaixo dos input's para sinalizar o usuário
+- ##### Um possível footer

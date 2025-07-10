@@ -1,0 +1,92 @@
+<div class="update__user__container">
+     <header>
+        <app-optimized-header></app-optimized-header>
+    </header>
+
+    <main>
+        <a class="back__page" [routerLink]="['/']">
+            <svg width="15" height="15" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <rect width="25" height="25" fill="url(#pattern0_17_4)"/>
+                <defs>
+                <pattern id="pattern0_17_4" patternContentUnits="objectBoundingBox" width="1" height="1">
+                <use xlink:href="#image0_17_4" transform="scale(0.0111111)"/>
+                </pattern>
+                <image id="image0_17_4" width="90" height="90" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAACXBIWXMAAAsTAAALEwEAmpwYAAACw0lEQVR4nO3dv4pTQRQG8PgHEQtBtBG0lsXSykIsBd3Ci5wTTNA0PoNrd0EzJwE3q09gpc1aa+Eb2Fhps8VmjptlYRVcLUTF5UoUbFYlMzJncpPvB+kCOZxcJvPlzsxtNAAAAAAAACANKl8fYvEP2fkNFq3++HL+PTs/GL83URkzrqr2seiTvzZ4b8MHuUuuJerp0sRNFq3I+Xe5a64d6vorJH4XjU6o2R8ukOjHkCb/evmVlHXNlFZPj7H4tdAmk9NXi+Xmkdz11wKtVgdI9Hnwlex0q+hvnMpdf22Q8w/Chwv92nR6IXfttcFdvRnR5Ip7/lbu2muDZHienX4JHzIwb55Y0fUnWfwoYobx4mJZHZz8k+ZYpxweZvEvI4aM9evLmydy1z+b8Vp+zzA+Xevr2dzl1wY5vRM8Vxa/2xS/mLv22uDu20vs/PeIH7/buWuvDbq7foad7kQkv9XxcJO7/lpoIV6nR4jXNgjxOj1GvE6PEK/TKxCv0+sgXhuoEK9NEOJ1eox4nR4hXqfXQrxOjxCvbRDidXqI1wYQrw0gXk95vL4qo+MWNc4EEl2OuHu9M14lmrv2WmHx27h7bQCNNsJO72PoMID/mg1hemeIenqOnf8csRIUe02Cmy3+RsR8GgvIY7Dzg4glXt+wJSJQWVb7yemziJnIVvPe6HTUtzuv2uXaURZ9E3FlY9ta1K0s0Q8RY/ZTrBQ1ujlLPV0K/mbnHQVulv/ZaKzmj2y2848ifhyxPyVUB0vC7BRY5GiHENMNmy2I6WYYMX36Y3qBszjCtBHT7RBiuh1GTLdDiOmGzXaI6SY6iOl2CsR0O4SYbthsQUyf6pjOOGAwHGK6oTZiup1mf7gQc+4SlppFYBlexkHdUxvT/bZVbTOHnD6e/L9rHAr7v48HWfnX40HGD1EYb2DC40EAAAAAAAAae/0ABFMxO8YFUdgAAAAASUVORK5CYII="/>
+                </defs>
+            </svg>
+
+            <h3>Voltar</h3>
+        </a><!--back__page-->
+
+        <form action="" method="post" (ngSubmit)="updateUserById()">
+            <div class="profile">
+                <picture class="profile__image">
+                    @if(profile){
+                        <button type="button" (click)="removeFilePreview()">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="12" cy="12" r="10" stroke="#333" stroke-width="1.5"></circle> <path d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5" stroke="#333" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
+                        </button>
+
+                        <img [src]="profile" alt="">
+                    }@else {
+                        <label for="profileImage">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="#333" stroke-width="1.5"></circle>
+                                <path d="M15 12L12 12M12 12L9 12M12 12L12 9M12 12L12 15" stroke="#333" stroke-width="1.5" stroke-linecap="round"></path>
+                            </svg>
+                        </label>
+                    
+                        <input
+                            type="file"
+                            id="profileImage"
+                            (change)="onProfileImageChange($event)"
+                            accept="image/*"
+                            hidden
+                        />
+                    }
+                </picture><!--profile__image-->
+
+                <div class="profile__wrapper">
+                    <div class="profile__full__name">
+                        <label>Nome Completo</label>
+
+                        <input type="text" [(ngModel)]="fullName" name="fullName" minlength="4" maxlength="60" required>
+                    </div><!--profile__full__name-->
+
+                    <div class="profile__age">
+                        <label>Idade</label>
+                    
+                        <input type="text" [(ngModel)]="age" name="age" required maxlength="3" minlength="1">
+                    </div><!--profile__age-->
+
+                    <div class="profile__address">
+                        <div class="profile__street">
+                            <label>Rua</label>
+                            
+                            <input type="text" [(ngModel)]="street" name="street" required> 
+                        </div><!--profile__street-->
+                        
+                        <div class="profile__neighborhood">
+                            <label>Bairro</label>
+
+                            <input type="text" [(ngModel)]="neighborhood" name="neighborhood" required>
+                        </div><!--profile__neighborhood-->
+                        
+                        <div class="profile__state">
+                            <label>UF</label>
+
+                            <input type="text" [(ngModel)]="state" name="state" maxlength="2" minlength="2" required>
+                        </div><!--profile__state-->
+                    </div><!--profile__address-->
+                </div><!--profile__wrapper-->
+            </div><!--profile-->
+
+            <div class="biography">
+                <label>Biografia</label>
+                <textarea [(ngModel)]="biography" name="biography" (input)="countBiographyLength()" maxlength="2000"></textarea>
+                <h4>{{ biographyLength }}/2000</h4>
+            </div><!--biography-->
+
+            <button type="submit">Salvar</button>
+        </form>
+    </main>
+</div><!--update__user__container-->

@@ -2,4 +2,88 @@
     <header>
         <app-header></app-header>
     </header>
+
+    <main>
+        <div class="main__create__user">
+            <h2>Crie um usuário é rápido e fácil! Clique <a [routerLink]="['/criar-usuario']">aqui</a></h2>
+        </div><!--main__create__user-->
+
+        <div class="main__title">
+            <h2>Uma gestão que realmente funciona!</h2>
+            <div class="main__title__line"></div>
+        </div><!--main__title-->
+
+        <div class="main__wrapper">
+            <table class="main__table">
+                <thead>
+                    <tr>
+                        <th>Foto de Perfil</th>
+                        <th>Nome Completo</th>
+                        <th>Idade</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of this.dataApiUser">
+                        <td>
+                            @if (user.profile) {
+                                <img [src]="user.profile" alt="" class="main__table__content__profile__picture__img">
+                            }@else {
+                                <div class="main__table__content__profile__picture"></div>
+                            }
+                        </td>
+                        <td>{{ user.full_name }}</td>
+                        <td>{{ user.age }} anos</td>
+                        <td class="main__table__content__actions">
+                            <a [routerLink]="['/usuario/',user.id]">
+                                <svg width="25" height="25" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <rect width="35" height="35" fill="url(#pattern0_1_41)"/>
+                                    <defs>
+                                    <pattern id="pattern0_1_41" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                    <use xlink:href="#image0_1_41" transform="scale(0.0111111)"/>
+                                    </pattern>
+                                    <image id="image0_1_41" width="90" height="90" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFbUlEQVR4nO2cXYhVVRSAv6vTqJmpY1MvUfRjYWWTlZCQUY2FxIRND0pEvWlSEFpB/5P1Ug8R9OCDCf3RQwWBPSRRNDb+RCONmgyjSH8PhfYzZmozI5Ynlq0Ll8GZuefctc/ZM3d9sOAyc+esnzln773WXvuA4ziO4ziO4ziO4ziO4ziOExnTgIXASmA98DnQC/wGHAESlSP6s179znr9mxuBqUU7ESOTgEXAK8Be4GRFMLOKXONb4GXgJtVRt9wCbAQOGQR2LDkIvAHcTJ0wBXgQ2JNDcEeS3cAq4GwmIDOAdcAfBQZ4uIgtLwDnMAE4S++egxEEdiT5HXhSn7ZxyT3ADxEEMqlSvgPuZhxxAfBuBIFLMsqHwPlEzgNAfwTBSgzG7/uJEJlQ3jN2dgjoBJ7XYWgeMFvH/Ub9fJX+rgPYon9jacM7wHQi4Vpgn6Fz32iGNzODLbN08u0xtKcPuJqCuQ8YMHKoB7jT0Laluma2sO1vYDkFUAKeA04ZODEAPApMDmBnA7AGGDSwU3x9hhyR8fFtoztlPzA/B5tbgANGNr+lMQiKLOo3GRm8E2gmP5qAHUa2b9YqY7A0eouRoV8XlPqKzm4jH74I4cO5Ghyr4WIOxXGe4TCyQ29AE6TK9aWRYYPAdRTPfMPV0naLtbaMyZ8ZGZTo6iIW1hr69WktRamScbbXE2gJl5XJhutskQ80ZqlZZ2hEYpyMWHGXsY9SLkid8VkkI5VpdS3codteMpEeV9mn21NLariu3IG7DP2UmK2oVvkio0yqUlZmDMQVQFcV15fJem5GHQ8Z+zqgG8KjcmGAzdKhjAUi2bw9nEKPfHdxBj1SBTxh7PMhjeWIdYGtxgoTLXVmuZPTBLksUgu/PLU2u+VrpXSNNPm/FEBZpgmC6oaLkUSy16In/rK8OFzRbcC/gZQtyzDx1aqzNaXO9kC+/wPcWlYiKeRPgRQlujOSho0GOjek0vh/YT+U/z+W0/RXAypJMtQ19hvolKVf2vpHyBhIjE83CoZU0pjS6WMGOuUaaZgSOAa/kkP3UGNKp48a6DwaWaClSYfXJ+DQ0RfZ0CExPt0s8ldAJfPqfDL8s3In6ZGAipaldHqJgc7bI1neiTxcqWiS4X7acOkg30ytM6KEZduZmuCvDFBMyur4JTqB5JWChyg9DGkn1Rl5IpDCWRmcX5yyj68/Y1GpKUBRSeSxseqzHwdQuopszK1y570z450srA7g76Zqdltma9qYGG9j1UKrriT6NBk5pp83ZJj4KikZb2eJfJ/mCV4YoDNzKfHRZuyjxOyGtEZYL/l2a807Fhr0uF0MQ6R51riGeLCe+F+rxRhZA35kaMwgsIA4erqtGmjKxzFqPjQ6zbDnLtF2LKktFEWzHgxKDHvwzI5ETzde1HcX2OS409CPrhBHL2YYp+ndOd/ZzcZB3h7yZpH/3ifGw0gL4VlgPFxszuOJbNCud8sJcm2gpZ9c83HjGs6beS5TS1rxsmwb26O9cCUj+9qM18mn9Oy4hX2pacvY6JKMIru0TUtKAVkKRKsDpNWH1ddCuTSAY4lW1Lr0LmrXXZA5ugfZqJ+vAe7Vp2troCpcj5Zto2CqvkHG4u0xSSRyUn2K8rVBLcanVpOCZK8W1qJGzmo/HXjDNwkk8kKsp9SHcUOTPnqDEQRwLDmhtW15Bca45WJtIbAs4ljJgJ4auIgJxEyt1/ZGEOAD+nqfIs87BqekrblyJ/2SY3B/1uGhtaiko0hKwPXa+/GVHgKyCuxxLfw8q7WOugvuaEjx/DJNUDr07N427cfr1/aqyhVCv/5OvvO+ni5o12vU9dsbHcdxHMdxHMdxHMdxHMdxiIv/AFyxU2gxdMHCAAAAAElFTkSuQmCC"/>
+                                    </defs>
+                                </svg>
+                            </a>
+
+                            <a [routerLink]="['/atualizar-usuario/',user.id]">
+                                <svg width="25" height="25" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <rect width="35" height="35" fill="url(#pattern0_1_40)"/>
+                                    <defs>
+                                    <pattern id="pattern0_1_40" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                    <use xlink:href="#image0_1_40" transform="scale(0.0111111)"/>
+                                    </pattern>
+                                    <image id="image0_1_40" width="90" height="90" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAACXBIWXMAAAsTAAALEwEAmpwYAAACJUlEQVR4nO3cv0ocURiG8RfTWIWkE0srwRACaS1TauUd2FoEYpEmMF8T2KuIJqm1sdXOW/AG1NhGUEL+wYaBKcRdJzuzZ77jzPf8YMpdZx6OZ85ZZ5UAAAAAAI/aK0lfJX2T9FvSpaR9SS9yn9iQ7Er6K2k85fgjaSf3CQ6BPRD4/vEh94lGiDwmtl9kYjtGJnZD7+cMzZzdALF7NIWUB0s/p9jlOntt1h8Wnc0Zey/3BUSJfa7g4azFa9qE/qWg7E4Ej9gXCsimhOg69mcFYzUxuopdfur3UoHYDFG6iP1OgViDX/NRwh1koUCsxc0rRWwiq/vYRFazkd1mzm76GkX/MGjccmSHYQkjE9sxMrEdIxPbMXL42OYYOWxsyxC5PFgni8iM5L4xpgsiD4Ixkok8CMZIJvIgGCOZyINgjGQiD4Ixkok8CIxkB0R2QGQHRHZAZAdEdrIi6a2kU/6Q6qf87t1hx8HN8XoetQ0eCfCxxHMXfq54uMXHEU8Q9WvJVzidb+gbYpH7IiLcEIvcF9AnzyWtV5uZL5LOiOxnWdJmzaaGzUhiq0wXD3udOPYZI3nSQvUPUkcdLAGLhO/Ze286GH1rzMmTPkX/Yo2HRUnfp9y8iJ3YVs36l9gJHfxno0HsBJ5K+jHDjo7Yc9qecdt81cE6O5TjmrjX1WqkXPo9yX2ifXdzL+7P6nOKrWo1gkQ+SrqVdFJNI89SvTEAAAAAQHn9A4rXWuBinqfwAAAAAElFTkSuQmCC"/>
+                                    </defs>
+                                </svg>
+                            </a>
+
+                            <button type="button" (click)="openModal(user.id)">
+                                <svg width="25" height="25" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <rect width="35" height="35" fill="url(#pattern0_1_39)"/>
+                                    <defs>
+                                    <pattern id="pattern0_1_39" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                    <use xlink:href="#image0_1_39" transform="scale(0.0111111)"/>
+                                    </pattern>
+                                    <image id="image0_1_39" width="90" height="90" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAACXBIWXMAAAsTAAALEwEAmpwYAAABnElEQVR4nO2WTWoVURhEjxlo4hZ0icalBBIVXZHi6GUXZpQfgk4/edAjJ1FpXtXrnAM17G7uoajbICIiIiIiIn/NKXAB3ADzj/mxPLt/hzzB1X8I/jOXT33kufMCuFtB9P3yrs3wGvi0HGw2mjvgI3CWFP2lQMQcKPuzRjgBfhUImAPl53JmRbNR0c9tOj4TZH9BfFjpT2FKc7v8ckYvQxEREZHDMxtNHWkho2jismw0eZFOBx2pIy1kFE1clo0mL9LpoCN1pIWMoonLstHkRToddKSOtJBRNHFZNpq8SKeDjtSRFjKKJi7LRpMX6XTQkTrSQkbRxGXZaPIinQ46UkdayCiauCwbTV6k00FH6kgLGUUTl2WjyYt0OuhIHWkho2jismw0eZFOBx2pIy1kFE1clo0mL9LpoCN1pIWMoonLstHkRToddKSOtJBRNHFZNpq8yKObjscCKbNyHijke4GYWTnfKOR9gZhZOe8o5BVwXSBnVsoOeEkpbzciewe8oZx9s8+XfTumC/IR+LrMRW2TRUREREREREQo4DcTptqBX96XOQAAAABJRU5ErkJggg=="/>
+                                    </defs>
+                                </svg>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div><!--main__wrapper-->
+    </main>
+
+    <div class="modal" *ngIf="showModal">
+        <div class="modal__content">
+            <h2>Deseja realmente remover este usuário?</h2>
+            <div class="modal__actions">
+                <button class="confirm" (click)="confirmRemove()">Confirmar</button>
+                <button class="cancel" (click)="cancelRemove()">Cancelar</button>
+            </div><!--modal__actions-->
+        </div><!--modal__content-->
+    </div><!--modal-->
 </div><!--home__container-->
